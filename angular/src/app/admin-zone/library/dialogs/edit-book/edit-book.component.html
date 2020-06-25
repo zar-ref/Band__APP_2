@@ -1,0 +1,73 @@
+<h2 mat-dialog-title >Atualizar Livro</h2>
+<mat-spinner class="mat-spinner-dialog" *ngIf="isLoading"  ></mat-spinner>
+<mat-dialog-content *ngIf="!isLoading">
+
+    <form  [formGroup]="editBookForm"  (ngSubmit)="onSubmit()" novalidate>
+
+        <input 
+            id="name"
+            class="form-control " 
+            type="text" 
+            mat-input
+            formControlName="bookName"
+            [ngClass]="{ 'is-invalid': submitted && editBookForm.invalid}" 
+        > 
+        <div *ngIf="submitted && editBookForm.invalid" class="invalid-feedback ">
+            <div *ngIf="editBookForm.get('bookName').hasError('required')" >Inserir Nome</div>             
+        </div>
+        <hr>
+        <input 
+            id="author"
+            class="form-control " 
+            type="text" 
+            mat-input
+            formControlName="bookAuthor"
+            [ngClass]="{ 'is-invalid': submitted && editBookForm.invalid}" 
+        > 
+        <div *ngIf="submitted && editBookForm.invalid" class="invalid-feedback ">
+            <div *ngIf="editBookForm.get('bookAuthor').hasError('required')" >Inserir Autor</div>             
+        </div>
+        <hr>
+        <textarea  
+            id="description"
+            class="form-control " 
+            rows="10"
+            mat-input
+            formControlName="bookDescription"
+            [ngClass]="{ 'is-invalid': submitted && editBookForm.invalid}" 
+        > </textarea>
+        <div *ngIf="submitted && editBookForm.invalid" class="invalid-feedback ">
+            <div *ngIf="editBookForm.get('bookDescription').hasError('required')" >Escolher novo Nome</div>                  
+          
+        </div>
+        <hr>
+        <input 
+            id="link"
+            class="form-control " 
+            type="text" 
+            mat-input
+            formControlName="bookLink"
+            [ngClass]="{ 'is-invalid': submitted && editBookForm.invalid}" 
+        > 
+        <div *ngIf="submitted && editBookForm.invalid" class="invalid-feedback ">
+            <div *ngIf="editBookForm.get('bookLink').hasError('required')" >Inserir Nome</div>  
+            <div *ngIf="editBookForm.get('bookLink').hasError('invalidLink')" >Link Inválido</div>                        
+        </div>
+        <hr>
+        <div class="action-row">
+            <button                 
+                mat-raised-button 
+                type="submit"
+                class="action-button gradient-green"  
+                >Atualizar
+            </button>
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="exitEditBook()"
+                class="action-button"  
+                >Voltar            
+            </button>
+        </div>
+    </form>    
+</mat-dialog-content>

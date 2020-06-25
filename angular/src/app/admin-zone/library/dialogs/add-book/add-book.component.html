@@ -1,0 +1,77 @@
+<h2 mat-dialog-title >Inserir novo Livro</h2>
+<mat-spinner class="mat-spinner-dialog" *ngIf="isLoading"  ></mat-spinner>
+<mat-dialog-content *ngIf="!isLoading">
+
+    <form  [formGroup]="newBookForm"  (ngSubmit)="onSubmit()" novalidate>
+
+        <input 
+            id="name"
+            class="form-control " 
+            type="text" 
+            mat-input
+            formControlName="newBookName"
+            placeholder="Nome do Livro..."
+            [ngClass]="{ 'is-invalid': submitted && newBookForm.invalid}" 
+        > 
+        <div *ngIf="submitted && newBookForm.invalid" class="invalid-feedback ">
+            <div *ngIf="newBookForm.get('newBookName').hasError('required')" >Inserir Nome</div>             
+        </div>
+        <hr>
+        <input 
+            id="author"
+            class="form-control " 
+            type="text" 
+            mat-input
+            formControlName="newBookAuthor"
+            placeholder="Nome do Autor..."
+            [ngClass]="{ 'is-invalid': submitted && newBookForm.invalid}" 
+        > 
+        <div *ngIf="submitted && newBookForm.invalid" class="invalid-feedback ">
+            <div *ngIf="newBookForm.get('newBookAuthor').hasError('required')" >Inserir Autor</div>             
+        </div>
+        <hr>
+        <textarea  
+            id="description"
+            class="form-control " 
+            rows="10"
+            mat-input
+            formControlName="newBookDescription"
+            placeholder="Nova descrição do Album..."
+            [ngClass]="{ 'is-invalid': submitted && newBookForm.invalid}" 
+        > </textarea>
+        <div *ngIf="submitted && newBookForm.invalid" class="invalid-feedback ">
+            <div *ngIf="newBookForm.get('newBookDescription').hasError('required')" >Escolher novo Nome</div>                  
+          
+        </div>
+        <hr>
+        <input 
+            id="link"
+            class="form-control " 
+            type="text" 
+            mat-input
+            formControlName="newBookLink"
+            placeholder="Link do Livro..."
+            [ngClass]="{ 'is-invalid': submitted && newBookForm.invalid}" 
+        > 
+        <div *ngIf="submitted && newBookForm.invalid" class="invalid-feedback ">
+            <div *ngIf="newBookForm.get('newBookLink').hasError('required')" >Inserir Nome</div>  
+            <div *ngIf="newBookForm.get('newBookLink').hasError('invalidLink')" >Link Inválido</div>                        
+        </div>
+        <hr>
+        <div class="action-row">
+            <button                 
+                mat-raised-button 
+                type="submit"
+                class="action-button gradient-green"  
+                >Criar
+            </button>
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="exitAddBook()"
+                class="action-button"  
+                >Voltar            
+            </button>
+        </div>
+    </form>    
+</mat-dialog-content>

@@ -1,0 +1,29 @@
+@import '~src/scss/styles.scss';
+
+.users {
+    height: 600px ;
+    max-height: 600px;
+    background-color: white;
+    border: none;
+
+    &__container{
+        padding: 1rem;
+    }
+}
+
+table{
+    width: 95%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    overflow-y: auto;
+}
+
+.paginator{
+    display: block;
+}
+
+mat-paginator{
+    display: table;
+    margin: 0 auto;
+}
+

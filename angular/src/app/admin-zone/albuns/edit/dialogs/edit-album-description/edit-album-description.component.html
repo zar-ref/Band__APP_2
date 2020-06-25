@@ -1,0 +1,36 @@
+<h2 mat-dialog-title >Editar descrição do album <span>{{data.albumName}}</span> ? </h2>
+<mat-spinner class="mat-spinner-dialog" *ngIf="isLoading"  ></mat-spinner>
+<mat-dialog-content *ngIf="!isLoading">
+
+    <form  [formGroup]="newAlbumDescriptionForm"  (ngSubmit)="onSubmit()" novalidate>
+        <textarea  
+            id="newDescription"
+            class="form-control " 
+            rows="10"
+            mat-input
+            formControlName="newDescription"
+            placeholder="Nova descrição do Album..."
+            [ngClass]="{ 'is-invalid': submitted && newAlbumDescriptionForm.invalid}" 
+        > </textarea>
+        <div *ngIf="submitted && newAlbumDescriptionForm.invalid" class="invalid-feedback ">
+            <div *ngIf="newAlbumDescriptionForm.get('newDescription').hasError('required')" >Escolher novo Nome</div>                  
+          
+        </div>
+        <hr>
+        <div class="action-row">
+            <button                 
+                mat-raised-button 
+                type="submit"
+                class="action-button gradient-green"  
+                >Mudar
+            </button>
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="exitEditAlbumDescription()"
+                class="action-button"  
+                >Voltar            
+            </button>
+        </div>
+    </form>    
+</mat-dialog-content>

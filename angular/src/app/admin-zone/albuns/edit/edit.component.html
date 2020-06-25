@@ -1,0 +1,71 @@
+<div class="container m-2" *ngIf="!isLoading">
+    <hr>
+    <mat-accordion multi="false" *ngIf="albuns.length > 0 && !isLoading" >
+        <mat-expansion-panel *ngFor="let album of albuns; let i = index" class="gradient-primary-lighter mb-4">
+          <mat-expansion-panel-header >  
+            <mat-panel-title>
+              {{ album.name }}
+            </mat-panel-title>
+            <mat-panel-description class="right-aligned">
+              {{ album.date }}
+            </mat-panel-description>       
+          </mat-expansion-panel-header>
+          <div class="album">
+            <div class="album__image">
+              <img [src]="getLinks(album.albumId,album.imgUrl , album.path)"  class="album__image__img m-2 mt-4" [alt]="Capa">
+            </div>
+            <div class="album__description m-3">
+              <p>{{ album.description }}</p>
+            </div>
+            <div class="album__musics m-3">
+              <ng-template ngFor let-music [ngForOf]="album.musicsUrls" let-index="j"  >
+                <hr>
+                <div class="album__musics__music">
+                  <div class="album__musics__music__title ml-4">
+                    {{music | cutMusicFilename}}
+                  </div>
+                  <div class="album__musics__music__action-row mr-4">
+
+                    
+                    <div class="album__musics__music__action-row__download">
+                      <button 
+                        mat-button 
+                        class="button-blue p-1 pl-2 pr-2 mr-2"
+                        (click)="getDownloadLink(album.albumId,music)"
+                        >
+                        Download
+                      </button>
+                    </div>
+                    <div class="album__musics__music__action-row__delete">
+                      <button 
+                        mat-button matTooltip="Apagar Música"
+                        matTooltipPosition="above"
+                        class="button-red p-1"
+                        (click)="showDeleteMusicDialog(album.albumId, album.albumName , music)"
+                        >
+                        <i class="fa fa-trash "></i>
+                      </button>
+                    </div>
+                  </div>
+                  
+                </div>
+              </ng-template>
+            </div>
+            
+            <mat-action-row >
+              <!-- <button mat-button class="button-secondary-color p-2 mr-2" >Editar Acesso ao Album</button> -->
+              <button mat-button class="button-secondary-color p-2 mr-2" (click)="showChangeAlbumCoverDialog(album.albumId, album.name, album.imgUrl)">Editar Capa de Album</button>
+              <button mat-button class="button-secondary-color p-2 mr-2" (click)=" showEditAlbumNameDialog(album.albumId , album.name)">Editar Nome</button>
+              <button mat-button class="button-secondary-color p-2 mr-2" (click)="showChangeAlbumDescriptionDialog(album.albumId , album.name ,album.description)">Editar Descrição</button>
+              <button mat-button class="button-secondary-color p-2 mr-2" (click)="showAddMusicToAlbumDialog(album.albumId, album.name , album.musicsUrls)" >Adicionar Música</button>
+              <button mat-button class="button-red p-2" (click)="showDeleteAlbum(album.albumId, album.name)">APAGAR ALBUM</button>
+            </mat-action-row> 
+
+
+          </div>
+          
+        </mat-expansion-panel>
+    </mat-accordion>
+    
+</div>
+<mat-spinner *ngIf="isLoading"></mat-spinner>

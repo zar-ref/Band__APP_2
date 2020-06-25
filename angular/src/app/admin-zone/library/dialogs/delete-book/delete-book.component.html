@@ -1,0 +1,21 @@
+<h2 mat-dialog-title >Deseja apagar <span>{{data.bookName}}!?</span>  ? </h2>
+<mat-spinner  *ngIf="isLoading"  ></mat-spinner>
+<mat-dialog-content  *ngIf="!isLoading" >
+    Esta ação é Irreversível e o Livro será apagado!
+</mat-dialog-content> 
+<mat-dialog-actions *ngIf="!isLoading" > 
+    <button                 
+        mat-raised-button 
+        color="warn" 
+        class="action-button"  
+        (click)="deleteBook()"
+        >Apagar Livro
+    </button>
+    <button
+        mat-raised-button
+        color="primary"
+        (click)="exitDeleteBook()"
+        class="action-button"  
+        >Voltar            
+    </button>
+</mat-dialog-actions>   

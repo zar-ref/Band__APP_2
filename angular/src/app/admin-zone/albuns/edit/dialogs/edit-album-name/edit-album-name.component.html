@@ -1,0 +1,37 @@
+<h2 mat-dialog-title >Editar nome do album <span>{{data.albumName}}</span> ? </h2>
+<mat-spinner class="mat-spinner-dialog" *ngIf="isLoading"  ></mat-spinner>
+<mat-dialog-content *ngIf="!isLoading">
+
+    <form  [formGroup]="newAlbumNameForm"  (ngSubmit)="onSubmit()" novalidate>
+        <input 
+            id="newName"
+            class="form-control " 
+            type="text" 
+            mat-input
+            formControlName="newName"
+            placeholder="Novo nome do Album..."
+            [ngClass]="{ 'is-invalid': submitted && newAlbumNameForm.invalid}" 
+        > 
+        <div *ngIf="submitted && newAlbumNameForm.invalid" class="invalid-feedback ">
+            <div *ngIf="newAlbumNameForm.get('newName').hasError('required')" >Escolher novo Nome</div>
+            <div *ngIf="newAlbumNameForm.get('newName').hasError('sameNameError')">Escolher um Nome Diferente</div>                    
+          
+        </div>
+        <hr>
+        <div class="action-row">
+            <button                 
+                mat-raised-button 
+                type="submit"
+                class="action-button gradient-green"  
+                >Mudar
+            </button>
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="exitEditAlbumName()"
+                class="action-button"  
+                >Voltar            
+            </button>
+        </div>
+    </form>    
+</mat-dialog-content>

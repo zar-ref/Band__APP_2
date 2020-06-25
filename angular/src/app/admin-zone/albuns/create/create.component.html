@@ -1,0 +1,147 @@
+<div class="container m-2" *ngIf="!isLoading">
+    <hr>
+    <form [formGroup]="albumForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="row mb-3" >
+            <div class="col-6">
+                <label for="newAlbumName" >Escolher nome do Album</label>
+                <input 
+                    id="newAlbumName"
+                    class="form-control " 
+                    type="text" 
+                    mat-input
+                    formControlName="albumName"
+                    placeholder="Nome do Album..."
+                    [ngClass]="{ 'is-invalid': submitted && f.albumName.errors }" 
+                > 
+                <div *ngIf="submitted && f.albumName.errors" class="invalid-feedback ">
+                    <div *ngIf="f.albumName.errors.required" >Preencher o Nome do Album</div>
+                </div>
+            </div>
+            <div class="col-6">
+                <label for="userRole">Escolher o tipo de utilizadores que terão acesso ao album</label>
+                    <div class="form-group ">                
+                        <select formControlName="usersRole" class="form-control"  id="userRole">
+                        <option>active</option>                      
+                        </select>
+                </div>
+            </div>                
+        </div>
+        
+        <div class="row">
+            <div class="col mr-1">
+                <div class="row justify-content-center">
+                    <h4 >Upload da capa de Album</h4>
+                </div>
+                <mat-card class="row gradient-primary-lighter mt-2 mb-2 pt-2 pb-2" >
+                    <div class="row width-100 pl-2">
+                        <div class="col-8 d-flex align-items-center justify-content-center ">
+                            <input 
+                                class="form-control" 
+                                type="file"  
+                                mat-input
+                                formGroupName="albumPicture"
+                                (change)="handleNewAlbumPictureInput($event.target.files)"
+                                [ngClass]="{ 'is-invalid': submitted && albumForm.get('albumPicture.fileType').errors }"
+                                
+                            > 
+                            <div *ngIf="submitted && albumForm.get('albumPicture.fileType').errors" class="invalid-feedback ml-3">  
+                                <div *ngIf="albumForm.get('albumPicture.fileType').hasError('required')">Escolher a Capa do Album</div>       
+                                <div *ngIf="albumForm.get('albumPicture.fileType').hasError('typeError')">Ficheiro Não permitido</div>                                 
+                            </div>
+                        </div>
+                        <div class="col-4 d-flex align-items-center justify-content-center" >
+                            Capa de Album 
+                           
+                        </div>
+                    </div>
+                    <div class="row  width-100">
+                        <div class="col-12 d-flex align-items-center justify-content-center" >
+                            Tipos Permitidos: jpeg, png
+                        </div>
+                    </div>                
+                </mat-card>
+                <div class="row mt-2 mb-2 pt-2 pb-2">
+                    <textarea 
+                        class="form-control" 
+                        rows="10" 
+                        placeholder="Descrição do Novo Album..." 
+                        formControlName="albumDescription"
+                        [ngClass]="{ 'is-invalid': submitted && f.albumDescription.errors }" 
+                        ></textarea>
+                        <div *ngIf="submitted && f.albumDescription.errors" class="invalid-feedback ">
+                            <div *ngIf="f.albumDescription.errors.required" >Preencher a Descrição do Album</div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col  d-flex align-items-center justify-content-center">
+                        <button 
+                            mat-button 
+                            type="submit"
+                            class="button-blue p-3" >
+                        Fazer Upload do Album!
+                    </button>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col ml-1 mr-1 " formArrayName="albumMusics">
+                <div class="row justify-content-center">
+                    <h4 >Upload de Músicas</h4>
+                </div>
+                <mat-card class="row gradient-primary-lighter-2 mt-2 mb-2 pt-2 pb-2 "  
+                    *ngFor="let musicCtrl of musicsControls; let i = index"
+                    [formGroupName]="i"
+                >
+                    <div class="row width-100 pl-2">
+                        <div class="col-8 d-flex align-items-center justify-content-center ">
+                            <input 
+                                class="form-control" 
+                                type="file" 
+                                mat-input
+                                (change)="handleNewAlbumMusicInput($event.target.files , i )" 
+                                [ngClass]="{ 'is-invalid':submitted && musicsControls[i].get('fileType').errors }" 
+
+                            > 
+                            <div *ngIf="submitted && musicsControls[i].get('fileType').errors" class="invalid-feedback ml-3">
+                                <div *ngIf="musicsControls[i].get('fileType').hasError('required')" >Escolher Música</div>
+                                <div *ngIf=" musicsControls[i].get('fileType').hasError('typeError')">Ficheiro Não permitido</div>                            
+                            </div>
+                           
+                        </div>
+                        <div class="col-4 d-flex align-items-center justify-content-center" >
+                            <button 
+                                mat-button matTooltip="Apagar" 
+                                class="button-red"
+                                (click)="onDeleteMusic(i)" >
+                                <i class="fa fa-trash "></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row  width-100">
+                        <div class="col-12 d-flex align-items-center justify-content-center" >
+                            Tipos Permitidos: mp3
+                        </div>
+                    </div>                
+                </mat-card>
+                <hr>
+                <div class="row">
+                    <div class="col-3  justify-content-center">
+                        <button mat-button 
+                            type="button"
+                            matTooltip="Adicionar Música" 
+                            class="pull-left ml-4 button-green" 
+                            (click)="onAddMusic()">
+                            <i class="fa fa-plus "></i>
+                        </button>
+                    </div>
+                    <div class="col-9 justify-content-center">
+                        <p>Nota: Os nomes dos ficheiros serão os nomes das músicas</p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </form>
+</div>
+<mat-spinner *ngIf="isLoading"></mat-spinner>

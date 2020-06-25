@@ -1,0 +1,66 @@
+<div class="m-4">
+    <h2>Aqui podes ouvir e sacar músicas!</h2>
+</div>
+
+<hr>
+<div class="m-4" *ngIf="!isLoading">
+
+    <mat-accordion multi="false" *ngIf="albuns.length > 0 && !isLoading" >
+        <mat-expansion-panel *ngFor="let album of albuns; let i = index" class="gradient-secondary-lighter mb-4" [ngClass]="{ 'gradient-primary-lighter': album.hasAccess }"  >
+          <mat-expansion-panel-header >  
+            <mat-panel-title>
+              {{ album.name }}
+            </mat-panel-title>
+            <mat-panel-description class="right-aligned">
+               
+               {{ album.date }} 
+               <span  *ngIf="album.hasAccess === false">
+                &nbsp; - Sem Acesso 
+                </span>
+            </mat-panel-description>       
+          </mat-expansion-panel-header>
+          <div class="album">
+            <div class="album__image">
+              <img [src]="getLinks(album.albumId,album.imgUrl , album.path)"  class="album__image__img m-2 mt-4" [alt]="Capa">
+            </div>
+            <div class="album__description m-3">
+              <p>{{ album.description }}</p>
+            </div>
+            <div class="album__musics m-3"  *ngIf="album.hasAccess === true">
+              <ng-template ngFor let-music [ngForOf]="album.musicsUrls" let-index="j"  >
+                <hr>
+                <div class="album__musics__music">
+                  <div class="album__musics__music__title ml-4">
+                    {{music | cutMusicFilename}}
+                  </div>
+                  <div class="album__musics__music__action-row mr-4">
+
+                    
+                    <div class="album__musics__music__action-row__download">
+                      <button 
+                        mat-button 
+                        class="button-blue p-1 pl-2 pr-2 mr-2"
+                        (click)="getDownloadLink(album.albumId,music)"
+                        >
+                        Download
+                      </button>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+              </ng-template>
+            </div>
+            
+            <mat-action-row *ngIf="album.hasAccess === false" >             
+              <button mat-button class="button-blue p-2 mr-2" (click)="getAccess(album.albumId)">Obter Acesso!</button>
+            </mat-action-row> 
+
+
+          </div>
+          
+        </mat-expansion-panel>
+    </mat-accordion>
+    
+</div>
+<mat-spinner *ngIf="isLoading"></mat-spinner>

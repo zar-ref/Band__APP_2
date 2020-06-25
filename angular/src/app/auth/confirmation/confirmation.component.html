@@ -1,0 +1,9 @@
+
+<div class="confirming" *ngIf="isLoading && !isRedirecting" >
+    A confirmar...
+</div>
+<div class="confirming" *ngIf="isLoading && isRedirecting" >
+    A redirecionar para Login em 3 segundos...
+</div>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+

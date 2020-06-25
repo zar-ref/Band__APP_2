@@ -1,0 +1,48 @@
+@import '~src/scss/styles.scss';
+
+.card-background{
+    background-image: radial-gradient(  rgba($color-primary, 0.8) , rgba($color-primary, .5));
+}
+
+
+
+.action-button {
+
+    display:inline-block;
+    margin-left: 70%;
+    margin-right: 10%;
+    width: 20%;
+    outline: none;
+    box-shadow: none;
+    
+}
+
+mat-card{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    margin-right: 20rem;
+    margin-left: 20rem;
+
+    
+}
+
+.logo{
+    display: block;
+    text-align: center;
+
+    &__picture{
+        max-width: 150px;
+        max-height: 150px;
+    }
+
+    &__login-msg{
+        margin: 10px;
+        color: white;
+        display:block;
+        font-size: large;
+    }
+}
+
+mat-form-field {
+    width: 100%;
+}

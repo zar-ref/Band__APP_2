@@ -1,0 +1,42 @@
+
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<mat-card class="card-background"*ngIf="!isLoading" >
+
+    <div class="logo">
+        <img src="assets/img/Logotipo.png" alt="Logotipo" class="logo__picture">
+        <div class="logo__login-msg">Login</div>
+    </div>
+    <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+        <mat-form-field>
+            <input  
+                matInput type="email" 
+                placeholder="Email"
+                formControlName="email"
+                required
+                >
+                <mat-error *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched  ">Preencher um email apropriado!</mat-error>
+            </mat-form-field>
+           
+
+            <mat-form-field>
+                <input type="password" matInput 
+                placeholder="Password"
+                formControlName="password"
+                required
+                >
+                <mat-error *ngIf="!loginForm.get('password').required">Preecher uma palavra passe </mat-error>    
+            </mat-form-field>
+            <button 
+                mat-raised-button 
+                color="accent" 
+                type="submit"  
+                class="action-button"
+                >Login
+            </button>
+
+    </form>
+    
+</mat-card>
+
+

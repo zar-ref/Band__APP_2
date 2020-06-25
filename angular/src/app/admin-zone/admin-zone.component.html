@@ -1,0 +1,39 @@
+
+<mat-sidenav-container  >
+    <mat-sidenav mode="side" opened="true" class="sidenav">
+        
+        <div class="sidenav__wrapper">
+            <div class="sidenav__wrapper__welcome">
+                <div class="sidenav__wrapper__welcome__content">
+                    <p>Painel de controlo</p>
+                   
+                </div>
+                
+            </div>
+
+
+
+
+            <div class="sidenav__wrapper__list">
+                    
+                <div class="sidenav__wrapper__list__item" [routerLink]="'users'" routerLinkActive="is-active">
+                    <div class="sidenav__wrapper__list__item__content"    ><i class="fa fa-users sidenav__wrapper__list__item__content__icon"></i>Gestão de Utilizadores</div>
+                </div>
+                <div class="sidenav__wrapper__list__item" [routerLink]="'albuns'" routerLinkActive="is-active">
+                    <div class="sidenav__wrapper__list__item__content"     ><i class="fa fa-music sidenav__wrapper__list__item__content__icon"></i>Gestão de Albuns</div>
+                </div>
+                <div class="sidenav__wrapper__list__item" [routerLink]="'library'"  routerLinkActive="is-active">
+                    <div class="sidenav__wrapper__list__item__content"    ><i class="fa fa-book sidenav__wrapper__list__item__content__icon"></i>Gestão de Biblioteca</div>
+                </div>
+             </div>
+        </div>
+        
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
+
+

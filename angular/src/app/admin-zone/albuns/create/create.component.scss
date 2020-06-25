@@ -1,0 +1,25 @@
+@import '~src/scss/styles.scss';
+
+
+.container{
+    font-size: .7rem;
+}
+
+.gradient-primary-lighter {
+    background-image:  linear-gradient(
+        to right bottom,
+        rgba($color-primary-lighter, 0.6) ,
+        rgba($color-primary-lighter, 0.2));
+}
+
+
+.gradient-primary-lighter-2 {
+    background-image:  linear-gradient(
+        to left bottom,
+        rgba($color-primary-lighter, 0.6) ,
+        rgba($color-primary-lighter, 0.2));
+}
+
+.width-100{
+    width: 100%;
+}

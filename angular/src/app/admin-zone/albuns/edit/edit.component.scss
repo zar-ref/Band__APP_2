@@ -1,0 +1,66 @@
+@import '~src/scss/styles.scss';
+
+mat-panel-title{
+    font-size: 1.2rem;
+}
+
+
+mat-panel-description.right-aligned {
+    flex-grow: 0;
+}
+
+.gradient-primary-lighter {
+    background-image:  linear-gradient(
+        to right bottom,
+        rgba($color-primary-lighter, 0.6) ,
+        rgba($color-primary-lighter, 0.2));
+
+}
+
+
+.album-name, .album-date{
+    display: inline-block;
+}
+
+.album{
+
+    &__image{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        &__img{
+            max-width: 800px;
+        }
+    }
+
+    &__musics{
+
+        &__music{
+
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+
+            &__title{
+                flex: 1;
+            }
+
+            &__action-row{
+                flex: 1;
+                display:flex;
+                justify-content: right;
+                &__download{
+                    display: inline-block;
+                }
+                &__delete{
+                    display: inline-block;
+                }
+            }
+            &:hover {
+                transform: scale(1.0095); 
+                transition: all .1s;
+               
+            }
+        }
+    }
+}

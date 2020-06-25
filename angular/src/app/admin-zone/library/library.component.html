@@ -1,0 +1,55 @@
+<div class="library">
+    <hr>
+    <div class="m-4" *ngIf="!isLoading">
+       
+        <mat-accordion multi="false" *ngIf="books.length > 0 && !isLoading ; else noBooks" >
+            <mat-expansion-panel *ngFor="let book of books; let i = index" class="gradient-primary-lighter mb-4" >
+              <mat-expansion-panel-header >  
+                <mat-panel-title>
+                  {{ book.name }}
+                </mat-panel-title>
+                <mat-panel-description class="right-aligned">
+                   
+                   {{ book.author }} 
+                </mat-panel-description>       
+              </mat-expansion-panel-header>
+              <div class="book">                
+                <div class="book__description m-3">
+                  <p>{{ book.description }}</p>
+                </div>
+                
+                
+                <mat-action-row  >             
+                    <button mat-button class="button-blue p-2 mr-2" (click)="showEditBookDialog(book.bookId , book.name, book.author, book.description, book.link)">Editar</button>
+                    <button mat-button class="button-blue p-2 mr-2" > <a href="{{book.link}}" target="_blank">Comprar!</a> </button>
+                    <button mat-button class="button-red p-2 mr-2" (click)="showDeleteBookDialog(book.bookId , book.name)">Apagar</button>
+                    
+                </mat-action-row> 
+    
+    
+              </div>
+              
+            </mat-expansion-panel>
+        </mat-accordion>
+        <ng-template #noBooks>
+            <h4>Não existem livros de momento</h4>
+        </ng-template>
+    </div>
+    <hr>
+    <div class="row m-2">
+        <div class="col-3  justify-content-center">
+            <button mat-button 
+                type="button"
+                matTooltip="Adicionar Livro" 
+                class="pull-left ml-4 button-green" 
+                (click)="showAddBookDialog()">
+                <i class="fa fa-plus "></i>
+            </button>
+        </div>
+        <div class="col-9 justify-content-center">
+            <p>Nota: Os links devem referenciar a distribuidores digitais de livros. Os links devem também incluir <strong>'https://'</strong> ou <strong>'http://'</strong>  no inicio.</p>
+            
+        </div>
+    </div>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>

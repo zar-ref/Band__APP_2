@@ -1,0 +1,36 @@
+@import '~src/scss/styles.scss';
+
+.albuns {
+    height: 600px ;
+    background-color:white;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+// nav{
+
+//     position: fixed;
+// }
+
+
+.nav-bg {
+    margin-top: 0;    
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: $color-secondary-lighter;
+}
+
+.nav-link{
+    margin: 0;
+    height: inherit;
+}
+
+.is-active{
+    background-color: white;
+    color: $color-black-shaded;
+}
+
+
+// .collapse{
+//     display: block;
+// }
