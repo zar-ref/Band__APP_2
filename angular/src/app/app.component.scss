@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+@import '~src/scss/styles.scss';
+
+.row{
+    // background-color: $color-primary-dark;
+     background-color: mat-color($angular-primary,300);
+}
+.back {
+    background-color: mat-color($angular-primary , 300);
+}

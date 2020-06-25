@@ -1,0 +1,18 @@
+@import '~src/scss/styles.scss';
+
+
+h1{
+    text-align: center;
+    color: $color-red
+}
+
+.action-button {
+
+    display:inline-block;
+    margin-left: 30%;
+    margin-right: 30%;
+    width: 40%;
+    outline: none;
+    box-shadow: none;
+    
+}
