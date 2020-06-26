@@ -1,1 +1,38 @@
-<p>library works!</p>
+<div class="library">
+    <hr>
+    <div class="m-4" *ngIf="!isLoading">
+       
+        <mat-accordion multi="false" *ngIf="books.length > 0 && !isLoading ; else noBooks" >
+            <mat-expansion-panel *ngFor="let book of books; let i = index" class="gradient-primary-lighter mb-4" >
+              <mat-expansion-panel-header >  
+                <mat-panel-title>
+                  {{ book.name }}
+                </mat-panel-title>
+                <mat-panel-description class="right-aligned">
+                   
+                   {{ book.author }} 
+                </mat-panel-description>       
+              </mat-expansion-panel-header>
+              <div class="book">                
+                <div class="book__description m-3">
+                  <p>{{ book.description }}</p>
+                </div>
+                
+                
+                <mat-action-row  >  
+                    <button mat-button class="button-blue p-2 mr-2" > <a href="{{book.link}}" target="_blank">Comprar!</a> </button>
+                </mat-action-row> 
+    
+    
+              </div>
+              
+            </mat-expansion-panel>
+        </mat-accordion>
+        <ng-template #noBooks>
+            <h4>Não existem livros de momento</h4>
+        </ng-template>
+    </div>
+    <hr>
+    
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>
