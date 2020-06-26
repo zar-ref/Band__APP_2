@@ -1,1 +1,27 @@
 @import '~src/scss/styles.scss';
+
+.library{
+    background-color: white;
+}
+
+mat-panel-title{
+    font-size: 1.2rem;
+}
+
+
+mat-panel-description.right-aligned {
+    flex-grow: 0;
+}
+
+.gradient-primary-lighter {
+    background-image:  linear-gradient(
+        to right bottom,
+        rgba($color-primary-lighter, 0.6) ,
+        rgba($color-primary-lighter, 0.2)) !important;
+
+}
+
+a{
+    color: $color-white;
+    text-decoration: none;
+}
